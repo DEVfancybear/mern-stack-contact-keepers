@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
 
-const Alerts = ({alert_reducers: {alerts}}) => {
+const Alerts = ({alert_reducers}) => {
 
     return (
-        alerts.length > 0 &&
-        alerts.map(alert => (
+        alert_reducers.length > 0 &&
+        alert_reducers.map(alert => (
             <div key={alert.id} className={`alert alert-${alert.type}`}>
                 <i className='fas fa-info-circle'/> {alert.msg}
             </div>
