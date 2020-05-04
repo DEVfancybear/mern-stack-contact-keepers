@@ -1,6 +1,11 @@
 import * as types from "../constants/ActionTypes";
-
-export default (state, action) => {
+const initialState = {
+    contacts: null,
+    current: null,
+    filtered: null,
+    error: null
+}
+export default (state = initialState, action) => {
     switch (action.type) {
         case types.GET_CONTACTS:
             return {
