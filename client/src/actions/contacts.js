@@ -45,7 +45,7 @@ export const addContact = contact => {
 };
 
 // Delete Contact
-export const deleteContact = async id => {
+export const deleteContact = id => {
     return async dispatch => {
         try {
             await axios.delete(`/api/contacts/${id}`);

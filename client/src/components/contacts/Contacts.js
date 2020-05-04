@@ -1,18 +1,17 @@
-import React, { Fragment, useContext, useEffect } from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React, {Fragment, useEffect} from 'react';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import ContactItem from './ContactItem';
 import Spinner from '../layout/Spinner';
+import {connect} from "react-redux";
+import {getContacts} from "../../actions/contacts";
+
+const Contacts = ({getContacts, contacts_reducers: {contacts, filtered, loading}}) => {
 
 
-const Contacts = () => {
-    // const contactContext = useContext(ContactContext);
-    //
-    // const { contacts, filtered, getContacts, loading } = contactContext;
-
-    // useEffect(() => {
-    //     getContacts();
+    useEffect(() => {
+        getContacts();
         // eslint-disable-next-line
-    // }, []);
+    }, []);
 
     if (contacts !== null && contacts.length === 0 && !loading) {
         return <h4>Please add a contact</h4>;
@@ -29,7 +28,7 @@ const Contacts = () => {
                                 timeout={500}
                                 classNames='item'
                             >
-                                <ContactItem contact={contact} />
+                                <ContactItem contact={contact}/>
                             </CSSTransition>
                         ))
                         : contacts.map(contact => (
@@ -38,15 +37,27 @@ const Contacts = () => {
                                 timeout={500}
                                 classNames='item'
                             >
-                                <ContactItem contact={contact} />
+                                <ContactItem contact={contact}/>
                             </CSSTransition>
                         ))}
                 </TransitionGroup>
             ) : (
-                <Spinner />
+                <Spinner/>
             )}
         </Fragment>
     );
 };
+const mapStateToProps = state => {
+    return {
+        contacts_reducers: state.contacts_reducers
+    }
+}
 
-export default Contacts;
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        getContacts: () => {
+            dispatch(getContacts())
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
