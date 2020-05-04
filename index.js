@@ -4,6 +4,8 @@ const cors = require("cors");
 const app = express();
 connectDB();
 app.use(cors());
+// Init Middleware
+app.use(express.json());
 app.get("/", (req, res) => {
     res.json({msg: "Welcome to Backend API"})
 })
