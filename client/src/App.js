@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Register from "./components/auth/Register";
 const App = () => {
     return (
         <Router className="App">
@@ -15,8 +16,9 @@ const App = () => {
                 <Navbar/>
                 <div className="container">
                     <Switch>
-                        <Route exact={true} path="/" component={Home}/>
-                        <Route exact={true} path="/" component={About}/>
+                        <Route exact path="/" component={Home}/>
+                        <Route exact path="/" component={About}/>
+                        <Route exact path='/register' component={Register} />
                     </Switch>
                 </div>
             </Fragment>
