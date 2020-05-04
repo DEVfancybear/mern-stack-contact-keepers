@@ -14,7 +14,7 @@ router.get("/", (req, res) => res.send("Router users"));
 
 
 //@route POST api/users
-//@desc Test route
+//@desc Register a user
 //@access Public
 router.post("/",
     // check validate các schema của models User
