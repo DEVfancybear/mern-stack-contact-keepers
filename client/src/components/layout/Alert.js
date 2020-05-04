@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 
-const Alerts = ({alert_reducers}) => {
+const Alert = ({alert_reducers}) => {
 
     return (
         alert_reducers.length > 0 &&
@@ -19,4 +19,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, null)(Alerts);
+export default connect(mapStateToProps, null)(Alert);

@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/routing/PrivateRoute";
-import Alerts from "./components/layout/Alert";
+import Alert from "./components/layout/Alert";
 
 const App = () => {
     return (
@@ -18,7 +18,7 @@ const App = () => {
             <Fragment>
                 <Navbar/>
                 <div className="container">
-                    <Alerts/>
+                    <Alert/>
                     <Switch>
                         <PrivateRoute exact path="/" component={Home}/>
                         <Route exact path='/register' component={Register}/>
