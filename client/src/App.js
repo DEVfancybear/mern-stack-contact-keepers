@@ -9,6 +9,7 @@ import {
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
 const App = () => {
     return (
         <Router className="App">
@@ -19,6 +20,7 @@ const App = () => {
                         <Route exact path="/" component={Home}/>
                         <Route exact path="/" component={About}/>
                         <Route exact path='/register' component={Register} />
+                        <Route exact path='/login' component={Login} />
                     </Switch>
                 </div>
             </Fragment>
