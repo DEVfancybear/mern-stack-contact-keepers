@@ -1,5 +1,9 @@
 const express = require("express");
+const connectDB = require("./config/db");
+const cors = require("cors");
 const app = express();
+connectDB();
+app.use(cors());
 app.get("/", (req, res) => {
     res.json({msg: "Welcome to Backend API"})
 })
