@@ -36,7 +36,7 @@ export const register = formData => {
                 payload: data
             });
 
-            await loadUser();
+            dispatch(loadUser());
         } catch (err) {
             dispatch({
                 type: types.REGISTER_FAIL,
@@ -63,7 +63,7 @@ export const login = formData => {
                 payload: data
             });
 
-            await loadUser();
+            dispatch(loadUser());
         } catch (err) {
             dispatch({
                 type: types.LOGIN_FAIL,

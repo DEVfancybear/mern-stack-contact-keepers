@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         case types.ADD_CONTACT:
             return {
                 ...state,
-                contacts: [action.payload, ...state.contacts],
+                contacts: [action.payload, ...initialState.contacts],
                 loading: false
             };
         case types.UPDATE_CONTACT:
