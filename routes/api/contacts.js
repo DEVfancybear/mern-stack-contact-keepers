@@ -8,7 +8,7 @@ const auth = require("../../middleware/auth");
 
 // @route GET api/contacts
 // @desc Get all users contacts
-// @access Public
+// @access Private
 router.get("/", auth, async (req, res) => {
     try {
         const contacts = await Contact.find({user: req.user.id}).sort({date: -1});
@@ -20,7 +20,7 @@ router.get("/", auth, async (req, res) => {
 });
 // @route POST api/contacts
 // @desc Add new contact
-// @access Public
+// @access Private
 router.post("/", [
     auth, [
         check("name", 'Name is required').not().isEmpty()
@@ -49,7 +49,7 @@ router.post("/", [
 
 // @route PUT api/contacts
 // @desc Update a contact
-// @access Public
+// @access Private
 router.put('/:id', auth, async (req, res) => {
     const {name, email, phone, type} = req.body;
 
@@ -85,8 +85,24 @@ router.put('/:id', auth, async (req, res) => {
 
 // @route DELETE api/contacts
 // @desc Delete a contact
-// @access Public
-router.delete("/:id", (req, res) => {
-    res.send("Delete contact")
+// @access Private
+router.delete('/:id', auth, async (req, res) => {
+    try {
+        let contact = await Contact.findById(req.params.id);
+
+        if (!contact) return res.status(404).json({msg: 'Contact not found'});
+
+        // Make sure user owns contact
+        if (contact.user.toString() !== req.user.id) {
+            return res.status(401).json({msg: 'Not authorized'});
+        }
+
+        await Contact.findByIdAndRemove(req.params.id);
+
+        await res.json({msg: 'Contact removed'});
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
 });
 module.exports = router;
