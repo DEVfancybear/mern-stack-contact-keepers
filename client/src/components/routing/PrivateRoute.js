@@ -5,7 +5,7 @@ import Spinner from "../layout/Spinner";
 
 const PrivateRoute = ({
                           component: Component,
-                          authReducers: {isAuthenticated, loading},
+                          auth_reducers: {isAuthenticated, loading},
                           ...rest
                       }) => (
     <Route
